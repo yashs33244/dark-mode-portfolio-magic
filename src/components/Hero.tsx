@@ -7,17 +7,17 @@ export const Hero = () => {
     {
       icon: <Github className="w-6 h-6" />,
       label: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/yashs33244/",
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://www.linkedin.com/in/yash-singh-2757aa1b4/",
     },
     {
       icon: <Twitter className="w-6 h-6" />,
       label: "Twitter",
-      url: "https://twitter.com/yourusername",
+      url: "https://x.com/Yash_s33244",
     },
   ];
 
@@ -26,7 +26,7 @@ export const Hero = () => {
       icon: <Code2 className="w-6 h-6" />,
       label: "LeetCode",
       stats: "450+ Problems",
-      url: "https://leetcode.com/yourusername",
+      url: "https://leetcode.com/u/yashs33244/",
     },
     {
       icon: <Code2 className="w-6 h-6" />,
@@ -66,15 +66,15 @@ export const Hero = () => {
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/50 z-0" />
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="container relative z-10"
       >
         <div className="text-center space-y-6">
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-6xl font-bold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -84,14 +84,14 @@ export const Hero = () => {
               Yash Singh
             </span>
           </motion.h1>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-xl md:text-2xl text-foreground/80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Full Stack Developer & ML Engineer
+            Full Stack Developer & ML Enthusiast
           </motion.h2>
 
           <motion.div
@@ -101,7 +101,8 @@ export const Hero = () => {
             className="max-w-2xl mx-auto"
           >
             <p className="text-foreground/60 mb-8">
-              Building high-impact web applications serving 1000+ monthly users | Combining modern web technologies with AI/ML expertise
+              Building high-impact web applications serving 1000+ monthly users
+              | Combining modern web technologies with AI/ML expertise
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-8">
@@ -111,11 +112,15 @@ export const Hero = () => {
               </div>
               <div className="p-4 rounded-lg bg-card/50 card-hover">
                 <div className="text-2xl font-bold text-primary">10+</div>
-                <div className="text-sm text-foreground/60">Paying Customers</div>
+                <div className="text-sm text-foreground/60">
+                  Paying Customers
+                </div>
               </div>
               <div className="p-4 rounded-lg bg-card/50 card-hover">
                 <div className="text-2xl font-bold text-primary">450+</div>
-                <div className="text-sm text-foreground/60">LeetCode Problems</div>
+                <div className="text-sm text-foreground/60">
+                  LeetCode Problems
+                </div>
               </div>
               <div className="p-4 rounded-lg bg-card/50 card-hover">
                 <div className="text-2xl font-bold text-primary">8.3</div>
@@ -139,7 +144,9 @@ export const Hero = () => {
                   <div className="text-primary">{profile.icon}</div>
                   <div className="flex-1 text-left">
                     <div className="font-semibold">{profile.label}</div>
-                    <div className="text-sm text-foreground/60">{profile.stats}</div>
+                    <div className="text-sm text-foreground/60">
+                      {profile.stats}
+                    </div>
                   </div>
                   <ExternalLink className="w-4 h-4 text-foreground/40" />
                 </motion.a>
@@ -148,7 +155,7 @@ export const Hero = () => {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -184,7 +191,11 @@ export const Hero = () => {
               variant="default"
               size="lg"
               className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("about")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Learn More About Me
             </Button>
