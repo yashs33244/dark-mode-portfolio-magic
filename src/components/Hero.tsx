@@ -14,12 +14,14 @@ export const Hero = () => {
       >
         <div className="text-center space-y-6">
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold gradient-text"
+            className="text-4xl md:text-6xl font-bold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Yash Singh
+            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
+              Yash Singh
+            </span>
           </motion.h1>
           
           <motion.h2 
@@ -31,14 +33,34 @@ export const Hero = () => {
             Full Stack Developer & ML Engineer
           </motion.h2>
 
-          <motion.p 
-            className="max-w-2xl mx-auto text-foreground/60"
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
+            className="max-w-2xl mx-auto"
           >
-            Building high-impact web applications serving 1000+ monthly users | Combining modern web technologies with AI/ML expertise
-          </motion.p>
+            <p className="text-foreground/60 mb-4">
+              Building high-impact web applications serving 1000+ monthly users | Combining modern web technologies with AI/ML expertise
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-4 rounded-lg bg-card/50">
+                <div className="text-2xl font-bold text-primary">1000+</div>
+                <div className="text-sm text-foreground/60">Monthly Users</div>
+              </div>
+              <div className="p-4 rounded-lg bg-card/50">
+                <div className="text-2xl font-bold text-primary">10+</div>
+                <div className="text-sm text-foreground/60">Paying Customers</div>
+              </div>
+              <div className="p-4 rounded-lg bg-card/50">
+                <div className="text-2xl font-bold text-primary">450+</div>
+                <div className="text-sm text-foreground/60">LeetCode Problems</div>
+              </div>
+              <div className="p-4 rounded-lg bg-card/50">
+                <div className="text-2xl font-bold text-primary">8.3</div>
+                <div className="text-sm text-foreground/60">CGPA</div>
+              </div>
+            </div>
+          </motion.div>
 
           <motion.div 
             className="flex justify-center gap-6 pt-8"
