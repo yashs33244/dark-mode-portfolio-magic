@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
+function stripHtmlTags(html: string) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+}
 export const Blog = () => {
   const { data: posts } = useQuery({
     queryKey: ["blogs"],
@@ -14,7 +24,7 @@ export const Blog = () => {
         .select("*")
         .order("created_at", { ascending: false })
         .limit(3);
-      
+
       if (error) throw error;
       return data;
     },
@@ -23,7 +33,7 @@ export const Blog = () => {
   return (
     <section id="blog" className="section-padding bg-card/50">
       <div className="container">
-        <motion.h2 
+        <motion.h2
           className="text-3xl font-bold mb-12 text-center gradient-text"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -49,9 +59,11 @@ export const Blog = () => {
                       <Calendar className="w-4 h-4" />
                       {new Date(post.created_at).toLocaleDateString()}
                     </div>
-                    <CardTitle className="text-xl font-semibold">{post.title}</CardTitle>
+                    <CardTitle className="text-xl font-semibold">
+                      {post.title}
+                    </CardTitle>
                     <CardDescription className="text-foreground/60">
-                      {post.content.slice(0, 150)}...
+                      {stripHtmlTags(post.content).slice(0, 150)}...
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -64,7 +76,7 @@ export const Blog = () => {
         </div>
 
         <div className="text-center mt-8">
-          <Link 
+          <Link
             to="/blogs"
             className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors"
           >

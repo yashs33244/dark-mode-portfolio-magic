@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Button } from "@/components/ui/button";
@@ -8,35 +8,60 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { Bold, Italic, List, ListOrdered } from "lucide-react";
 
+const AUTHORIZED_EMAIL = "yashs3324@gmail.com"; // Your email address
+
 const PostBlog = () => {
   const [title, setTitle] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  useEffect(() => {
+    checkAuthorization();
+  }, []);
+
+  const checkAuthorization = async () => {
+    const session = await supabase.auth.getSession();
+    if (session.data.session?.user.email === AUTHORIZED_EMAIL) {
+      setIsAuthorized(true);
+    } else {
+      navigate("/blogs");
+      toast({
+        title: "Unauthorized",
+        description: "Only the site owner can create blog posts",
+        variant: "destructive",
+      });
+    }
+  };
 
   const editor = useEditor({
     extensions: [StarterKit],
     editorProps: {
       attributes: {
-        class: "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none",
+        class:
+          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none",
       },
     },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const session = await supabase.auth.getSession();
-    if (!session.data.session) {
+    if (
+      !session.data.session ||
+      session.data.session.user.email !== AUTHORIZED_EMAIL
+    ) {
       toast({
-        title: "Error",
-        description: "You must be logged in to create a post",
+        title: "Unauthorized",
+        description: "Only the site owner can create blog posts",
         variant: "destructive",
       });
       return;
     }
 
     const content = editor?.getHTML() || "";
-    
+
     const { error } = await supabase.from("blogs").insert({
       title,
       content,
@@ -59,10 +84,14 @@ const PostBlog = () => {
     navigate("/blogs");
   };
 
+  if (!isAuthorized) {
+    return null; // Don't render anything if not authorized
+  }
+
   return (
     <div className="container mx-auto p-6 max-w-4xl">
       <h1 className="text-4xl font-bold mb-8">Create New Blog Post</h1>
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <Input
